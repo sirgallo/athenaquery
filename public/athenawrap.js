@@ -29,8 +29,9 @@ const getAthenaResults = async (awscreds, s3, db, request) => {
     const athenaExpress = new AthenaExpress(athenaExpressConfig)
     
     try {
+        console.log('Please wait for the query to run...')
         let results = await athenaExpress.query(request)
-        console.log(results)
+        console.log('Query Complete!')
         return results
     }
     catch (err) {

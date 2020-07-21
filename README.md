@@ -35,6 +35,6 @@
 
   The other included components of this project are being used for a Senior Design Project, where certain routes will handle user logic and application logic. A wrapper for Mariadb is also included, providing functions for querying, inserting, and deleting, as well as creating and closing the connection to the database. 
 
-  All helper functions are built to be asyncronous.
+  All helper functions are built to be asynchronous.
 
   This project spawns both the Express Node.js API that handles querying athena annd a Mariadb instance with pre-initialized tables ready to handle user and application data. This method would only be recommended for development purposes as this design was implemented to reduce costs and to run both the db instance and the api on the same EC2 t2.micro instance, which falls under the AWS free tier for AWS services. 
