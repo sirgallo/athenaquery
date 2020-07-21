@@ -12,17 +12,17 @@
   - run **docker-compose up --build athenaquery dbcomponents**
 
 ### Test:
-  route: http://yoururl:9002/query 
-  json: {
-          "awscreds": {
-            "region": string,
-            "accessKeyId": string,
-            "secretAccessKey": string
-          },
-          "s3": string,
-          "db": string,
-          "query": string
-        }
+  - route: http://yoururl:9002/query
+  - json: {
+            "awscreds": {
+              "region": string,
+              "accessKeyId": string,
+              "secretAccessKey": string
+            },
+            "s3": string,
+            "db": string,
+            "query": string
+          }
 
 ### For Reference:
   The other included components of this project are being used for a Senior Design Project, where certain routes will handle user logic and application logic. A wrapper for Mariadb is also included, providing functions for querying, inserting, and deleting, as well as creating and closing the connection to the database. 
