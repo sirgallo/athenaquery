@@ -10,10 +10,10 @@ class MariaDB {
         //  make switch to dedicated endpoint when deploying
         this.connection = mysql.createConnection({
             host: 'mysql',
-            port: 8092,
-            user: 'sightuser',
-            password: 'usersight',
-            database: 'sightmodels'
+            port: 9003,
+            user: 'dbuser',
+            password: 'userdbpass',
+            database: 'restaurateurmodels'
         })
     }
 

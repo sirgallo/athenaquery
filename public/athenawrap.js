@@ -1,20 +1,28 @@
 "use strict"
+/*
+ * Helper function for requests to Amazon Athena ~
+ *
+ * As abstract as possible to be reused in possible
+ * fucture projects.
+*/
 
+//  object for defining AWS object with User credentials
 const AthenaExpress = require("athena-express"),
-    aws = require("aws-sdk"),
-    awsCredentials = {
-        region: "us-east-1",
-        accessKeyId: "AKIAQZ2N52BJEE4DFKJO",
-        secretAccessKey: "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"
-    }
+    aws = require("aws-sdk")
 
-const getCovidLocResults = async (request) => {
-    aws.config.update(awsCredentials)
-    
+//  function for requesting Athena service
+//  awscred -> user credentials (region, access key, secrect access key)
+//  s3 -> the s3 bucket to write results to
+//  db -> the glue database to read from
+//  request -> the query for Athena
+const getAthenaResults = async (awscreds, s3, db, request) => {
+
+    aws.config.update(awscreds)
+
     const athenaExpressConfig = {
         aws,
-        s3: "s3://sirgalloathenaresults",
-        db: "gluedb",
+        s3,
+        db,
         getStats: true
     }
 
@@ -30,4 +38,4 @@ const getCovidLocResults = async (request) => {
     }
 }
 
-module.exports.getCovidLocResults = getCovidLocResults
+module.exports.getAthenaResults = getAthenaResults

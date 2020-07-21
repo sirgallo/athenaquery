@@ -6,11 +6,27 @@ services:
         build: 
             context: .
         ports:
-            - '8099:8099'
+            - '9002:9002'
         environment:
             - NODE_ENV=docker
         volumes:
             - athquerydata:/usr/src/app
+        networks:
+            - athquerynetwork
+        links:
+            - 'dbcomponent:mysql'
+    dbcomponent:
+        image: mariadb
+        container_name: restaurateur_inst
+        environment:
+            - MYSQL_DATABASE=restaurateurmodels
+            - MYSQL_ROOT_PASSWORD=test
+        volumes:
+            - ./dbconfig:/etc/mysql/conf.d:ro
+            - ./dbconfig:/docker-entrypoint-initdb.d:ro
+            - restaurateurdata:/var/lib/mysql
+        ports:
+            - '9003:9003'
         networks:
             - athquerynetwork
 networks:
@@ -18,3 +34,4 @@ networks:
         driver: bridge
 volumes:
     athquerydata:
+    restaurateurdata:
