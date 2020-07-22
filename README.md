@@ -29,7 +29,7 @@
   - region: the aws region your athena instance is (eg. us-east-1)
   - accessKeyId: an access key generated for your IAM user
   - secretAccessKey: an additional key generated when the access key is generated
-  - s3: the bucket where the athena query results will reside
+  - s3: the S3 bucket where the athena query results will reside
   - db: the AWS Glue database to read from
   - query: a query for AWS Athena to execute, written  in standard sql
 
