@@ -76,10 +76,15 @@ router.post('/register', function(req, res, next) {
                             maria.close()
                                 .then(() => {
                                     user = JSON.parse(JSON.stringify(user))
-                                    user = user[0]  
+                                    user = user[0]
+                                    retuser = {
+                                        'username': user.username,
+                                        'email': user.email
+                                    }
+
                                     //let token = jwt.sign({'id': user.id}, 'supersecret', {'expiresIn': 86400})
-                                    //res.send({'status': 'success', 'message': 'User successfully inserted', 'auth': true, 'token': token, 'user': user})
-                                    res.send({'status': 'success', 'message': 'User successfully inserted', 'auth': true, 'user': user})
+                                    //res.send({'status': 'success', 'message': 'User successfully inserted', 'auth': tusernrue, 'token': token, 'user': user})
+                                    res.send({'status': 'success', 'message': 'User successfully inserted', 'auth': true, 'user': retuser})
                                 })
                         })
                 })

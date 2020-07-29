@@ -6,7 +6,7 @@ create table if not exists restaurateurmodels.users (
     id bigint not null auto_increment,
     username varchar(256) not null,
     email varchar(256) not null,
-    zip integer(5) not null,
+    zip varchar(256) not null,
     password varchar(256) not null,
     primary key(id)
 );
@@ -17,7 +17,7 @@ create table if not exists restaurateurmodels.sites (
     coords_lat integer(9) not null,
     coords_lon integer(9) not null,
     site_name varchar(256) not null,
-    zip integer(5) not null,
+    zip varchar(256) not null,
     site_type varchar(256) not null,
     primary key (id),
     foreign key (user_id)

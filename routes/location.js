@@ -5,6 +5,7 @@ const getresults = require('../public/athenawrap')
 
 router.post('/', (req, res, next) => {
     
+    console.log(req.body)
     console.log(req.body.coord)
     console.log('Made it to the location route!')
     
