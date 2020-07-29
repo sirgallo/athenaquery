@@ -25,7 +25,7 @@ router.post('/', (req, res, next) => {
     //  call Athena Wrapper function
     getresults.getAthenaResults(awscreds, s3, db, query)
         .then(data => {
-            res.json({'status': 'success', 'data': data})
+            res.json({'status': 'success', 'data': data[0]})
         })
         .catch(err => {
             console.log(err)
