@@ -16,7 +16,13 @@ class MariaDB {
             database: 'restaurateurmodels'
         })
     }
+    
+    /*
+    *   All methods are asynchronous (Promise based)
+    *   when called, need to use then -> catch statement
+    */
 
+    //  A helper method for querying a MariaDB database
     query(sql, args) {
         return new Promise((resolve, reject) => {
             this.connection.query(sql, args, (err, rows) => {
@@ -27,6 +33,7 @@ class MariaDB {
         })
     }
 
+    //  A helper method for inserting new rows into a database
     insert(sql, name, args) {
         return new Promise((resolve, reject) => {
             this.connection.query(sql, args, err => {
@@ -38,6 +45,7 @@ class MariaDB {
         })
     }
 
+    //  A helper method for deleting existing rows in a database
     delete(sql, args) {
         return new Promise((resolve, reject) => {
             this.connection.query(sql, args, err => {
@@ -49,6 +57,7 @@ class MariaDB {
         })
     }
 
+    //  Close the connection with the database, this is required after each query
     close() {
         return new Promise((resolve, reject) => {
             this.connection.end(err => {

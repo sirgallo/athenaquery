@@ -45,23 +45,27 @@ router.post('/login', function(req, res, next) {
 })
 
 router.post('/register', function(req, res, next) {
-  //  initialize new user instance
+    //  initialize new user instance
     let User = user.User
     User.username = req.body.username
     User.email = req.body.email
     User.zip = req.body.zip
 
+    //  hash the function
+    //  await...once hashed continue
     bcrypt.hash(req.body.password, 10)
         .then(function(hash) {
             User.password = hash
             console.log(User)
 
+            //  query to insert user into database
             let insertUser = "insert into `users` (`username`, `email`, `zip`, `password`) values ('" +
             User.username + "', '" +
             User.email + "', '" +
             User.zip + "', '" +
             User.password + "');"
-  
+            
+            //  call MariaDB wrapper class
             console.log('Insert User Query: ', insertUser)
             const maria = new Maria.MariaDB()
             maria.insert(insertUser, User.email)
@@ -70,6 +74,7 @@ router.post('/register', function(req, res, next) {
                     let findUser = "select * from `users` where email = '"
                         + User.email + "' limit 1"
                     console.log(findUser)
+                    //  once user is selected, grab from database
                     maria.query(findUser)
                         .then(user => {
                             console.log('User grabbed...:', user)
@@ -84,12 +89,15 @@ router.post('/register', function(req, res, next) {
 
                                     //let token = jwt.sign({'id': user.id}, 'supersecret', {'expiresIn': 86400})
                                     //res.send({'status': 'success', 'message': 'User successfully inserted', 'auth': tusernrue, 'token': token, 'user': user})
+                                    
+                                    //  send a JSON response with authentication
                                     res.send({'status': 'success', 'message': 'User successfully inserted', 'auth': true, 'user': retuser})
                                 })
                         })
                 })
                 .catch(err => {
                     console.log(err)
+                    //  send error message to client
                     res.send({'status': 'failure', 'message': 'User was not created'})
                 })
         })

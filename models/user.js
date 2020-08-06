@@ -1,3 +1,4 @@
+//  An instance of a User
 let User = {
     username: '',
     email: '',
